@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.bok.mapper.BoardMapper">
+		
+		<!-- 글 생성 -->
+		<insert id="register">
+			insert into test_board values(boardNumber.nextval, #{userNumber}, #{title}, #{content}, sysdate)
+		</insert>
+		
+		<!-- BoardCheck -->
+		<select id="list" resultType="com.bok.domain.BoardVO">
+			select * from test_board where userNumber=#{userNumber} order by boardNumber desc
+		</select>
+		
+		<!-- get -->
+		<select id="get" resultType="com.bok.domain.BoardVO">
+			select * from test_board where boardNumber=#{boardNumber}
+		</select>
+		
+		<!-- update -->
+		<update id="modify">
+			update test_board set title=#{title}, content=#{content} where boardNumber=#{boardNumber}
+		</update>
+		
+		<!-- remove -->
+		<delete id="remove">
+			delete from test_board where boardNumber=#{boardNumber}
+		</delete>
+	</mapper>

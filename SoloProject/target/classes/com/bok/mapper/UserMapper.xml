@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+	<mapper namespace="com.bok.mapper.UserMapper">
+	
+		<!-- userGet -->
+		<select id="userGet" resultType="com.bok.domain.UserVO">
+		 	select * from test_user where userNumber=#{userNumber}
+		</select>
+		<!-- joinMember -->
+		<insert id="joinMember">
+			insert into test_user values(USERNUMBER.nextval, #{id}, #{password}, #{name}, 
+																	#{phone1},#{phone2},#{phone3})
+		</insert>
+			
+		<!-- login -->
+		<select id="login" resultType="int">
+			select userNumber from test_user where id=#{id} and password=#{password}
+		</select>
+		
+		<!-- idcheck -->
+		<select id="idcheck" resultType="int">
+			select count(*) from test_user where id=#{id}
+		</select>
+		
+		<!-- BoardCheck -->
+		<select id="boardCheck" resultType="com.bok.domain.BoardVO">
+			select * from test_board where userNumber=#{userNumber}
+		</select>
+ 	</mapper>
